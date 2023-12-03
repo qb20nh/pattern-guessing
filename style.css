@@ -1,0 +1,124 @@
+:root {
+    zoom: 1;
+}
+
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.container {
+    font-size: 0;
+    position: relative;
+}
+
+.row {
+    white-space: nowrap;
+}
+
+.col {
+    display: inline-block;
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+    border: 1px solid;
+    box-sizing: border-box;
+    margin: 16px;
+    background: radial-gradient(circle at center, black 4px, transparent 4px);
+}
+
+.line[data-point^="(0,"] {
+    --x1: 0;
+}
+
+.line[data-point^="(1,"] {
+    --x1: 1;
+}
+
+.line[data-point^="(2,"] {
+    --x1: 2;
+}
+
+.line[data-point*="0)->("] {
+    --y1: 0;
+}
+
+.line[data-point*="1)->("] {
+    --y1: 1;
+}
+
+.line[data-point*="2)->("] {
+    --y1: 2;
+}
+
+.line[data-point*=")->(0"] {
+    --x2: 0;
+}
+
+.line[data-point*=")->(1"] {
+    --x2: 1;
+}
+
+.line[data-point*=")->(2"] {
+    --x2: 2;
+}
+
+.line[data-point$=",0)"] {
+    --y2: 0;
+}
+
+.line[data-point$=",1)"] {
+    --y2: 1;
+}
+
+.line[data-point$=",2)"] {
+    --y2: 2;
+}
+
+.line {
+    --color: #0004;
+
+    --xl: max(var(--x1), var(--x2));
+    --xs: min(var(--x1), var(--x2));
+    --yl: max(var(--y1), var(--y2));
+    --ys: min(var(--y1), var(--y2));
+    --w: calc(var(--xl) - var(--xs));
+    --h: calc(var(--yl) - var(--ys));
+
+    --dx: calc(var(--x2) - var(--x1));
+    --dy: calc(var(--y2) - var(--y1));
+
+    --width: calc(var(--w) * 64px);
+    --height: calc(var(--h) * 64px);
+
+    --angle: atan2(var(--height), var(--width));
+
+    --left: calc(32px + var(--xs) * 64px);
+    --top: calc(32px + var(--ys) * 64px);
+}
+
+.line {
+    display: inline-block;
+    outline: 1px dashed red;
+    width: calc(var(--width) + 8px);
+    height: calc(var(--height) + 8px);
+    position: absolute;
+    left: calc(var(--left) - 4px);
+    top: calc(var(--top) - 4px);
+
+    background: linear-gradient(var(--angle), transparent calc(50% - 4px), var(--color) calc(50% - 4px), var(--color) calc(50% + 4px), transparent calc(50% + 4px));
+
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.line[style] {
+    outline: 1px solid red;
+}
+
+.col:hover {
+    box-shadow: 3px 3px red, -3px -3px cyan;
+}
