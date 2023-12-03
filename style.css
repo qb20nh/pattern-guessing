@@ -94,7 +94,7 @@ body {
     --width: calc(var(--w) * 64px);
     --height: calc(var(--h) * 64px);
 
-    --angle: atan2(var(--height), var(--width));
+    --angle: atan2(var(--dy), var(--dx));
 
     --left: calc(32px + var(--xs) * 64px);
     --top: calc(32px + var(--ys) * 64px);
@@ -117,6 +117,10 @@ body {
 
 .line[style] {
     outline: 1px solid red;
+    --width: var(--w);
+    --height: var(--h);
+    --left: var(--xs);
+    --top: var(--ys);
 }
 
 .col:hover {
