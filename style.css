@@ -8,9 +8,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    overflow: hidden;
+    flex-grow: 1;
 }
 
-.container {
+#container {
     font-size: 0;
     position: relative;
 }
@@ -102,7 +104,6 @@ body {
 
 .line {
     display: inline-block;
-    outline: 1px dashed red;
     width: calc(var(--width) + 8px);
     height: calc(var(--height) + 8px);
     position: absolute;
@@ -116,7 +117,6 @@ body {
 }
 
 .line[style] {
-    outline: 1px solid red;
     --width: var(--w);
     --height: var(--h);
     --left: var(--xs);
